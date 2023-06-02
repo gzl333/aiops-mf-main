@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import { ref, watch, /* computed, */ onMounted, onUnmounted } from 'vue'
-import { useStore } from 'stores/store'
+// import { useStore } from 'stores/store'
 import { i18n } from 'boot/i18n'
 // import { navigateToUrl } from 'single-spa'
 
@@ -16,7 +16,7 @@ import HeaderContent from 'components/HeaderContent.vue'
 // const emits = defineEmits(['change', 'delete'])
 
 const { tc } = i18n.global
-const store = useStore()
+// const store = useStore()
 
 </script>
 

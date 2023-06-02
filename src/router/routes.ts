@@ -63,11 +63,11 @@ const routes: RouteRecordRaw[] = [
     //   }
     // ]
   },
-  {
-    path: '/storage:afterStorage(.*)',
-    component: () => import('layouts/StorageShareLayout.vue')
-    // requireLogin既不是true也不是false，登录与否都可以访问该路由
-  },
+  // {
+  //   path: '/storage:afterStorage(.*)',
+  //   component: () => import('layouts/StorageShareLayout.vue')
+  //   // requireLogin既不是true也不是false，登录与否都可以访问该路由
+  // },
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),

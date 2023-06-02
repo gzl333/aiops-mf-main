@@ -155,7 +155,7 @@ module.exports = configure(function (ctx) {
           ...cfg.resolve.alias, // This adds the existing alias
           // Add your own alias like this
           api: resolve(__dirname, './src/api'),
-          hooks: resolve(__dirname, './src/hooks')
+          composables: resolve(__dirname, './src/composables')
         }
       }
     },

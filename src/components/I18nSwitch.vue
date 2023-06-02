@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { watch, computed } from 'vue'
 // import { navigateToUrl } from 'single-spa'
-// import { useStore } from 'stores/store'
+import { useStore } from 'stores/store'
 // import { useRoute } from 'vue-router'
 import { i18n } from 'boot/i18n'
 import { useQuasar } from 'quasar'
+
+import useTitleModifier from 'src/composables/useTitleModifier'
 
 /*
 const props =
@@ -18,10 +20,13 @@ defineProps({
 })
 // const emits = defineEmits(['change', 'delete'])
 
-// const store = useStore()
+const store = useStore()
 // const route = userRoute()
 // const tc = i18n.global.tc
 const quasar = useQuasar()
+
+// title
+const titleModifier = useTitleModifier()
 
 // i18n
 // 保持localeModel与i18n模块同步
@@ -54,8 +59,11 @@ watch(localeModel, value => {
     quasar.lang.set(lang.default)
   })
 
+  // change dom title
+  titleModifier(i18n.global.locale as string, store.items.currentApp)
+
   // store locale preference in localStorage : 'zh' / 'en'
-  localStorage.setItem('aiops_locale', locale.slice(0, 2))
+  localStorage.setItem('usp_locale', locale.slice(0, 2))
 
   // dispatch global i18n event. Listened at micro-app's boot/i18n
   window.dispatchEvent(new CustomEvent('i18n', { detail: i18n.global.locale }))

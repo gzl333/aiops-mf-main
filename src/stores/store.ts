@@ -5,7 +5,7 @@ import { baseURLLogin } from 'boot/axios'
 import { Notify } from 'quasar'
 import { i18n } from 'boot/i18n'
 
-import useExceptionNotifier from 'src/hooks/useExceptionNotifier'
+import useExceptionNotifier from 'src/composables/useExceptionNotifier'
 
 const { tc } = i18n.global
 const exceptionNotifier = useExceptionNotifier()
@@ -103,9 +103,9 @@ export const useStore = defineStore('main', {
           this.items.tokenDecoded = jwtDecode(respPostDealCode?.data.data.accessToken as string)
 
           // localStorage
-          localStorage.setItem('aiops_access', this.items.tokenAccess)
-          localStorage.setItem('aiops_refresh', this.items.tokenRefresh)
-          localStorage.setItem('aiops_loginType', this.items.loginType)
+          localStorage.setItem('usp_access', this.items.tokenAccess)
+          localStorage.setItem('usp_refresh', this.items.tokenRefresh)
+          localStorage.setItem('usp_loginType', this.items.loginType)
 
           // dispatch global token event. Listened at micro-app's boot/axios
           window.dispatchEvent(new CustomEvent('token', {
@@ -147,9 +147,9 @@ export const useStore = defineStore('main', {
         delete this.items.tokenRefresh
         delete this.items.tokenDecoded
         // localStorage
-        localStorage.removeItem('aiops_access')
-        localStorage.removeItem('aiops_refresh')
-        localStorage.removeItem('aiops_loginType')
+        localStorage.removeItem('usp_access')
+        localStorage.removeItem('usp_refresh')
+        localStorage.removeItem('usp_loginType')
         // logout remote
         let logoutUrl = ''
         if (loginType === 'passport') {
@@ -164,10 +164,10 @@ export const useStore = defineStore('main', {
     },
     // 页面刷新时从浏览器localStorage里读取token
     async reloadToken () {
-      if (localStorage.getItem('aiops_access') && localStorage.getItem('aiops_refresh') && localStorage.getItem('aiops_loginType')) {
-        const tokenAccess = localStorage.getItem('aiops_access') as string
-        const tokenRefresh = localStorage.getItem('aiops_refresh') as string
-        const loginType = localStorage.getItem('aiops_loginType') as 'passport' | 'aai'
+      if (localStorage.getItem('usp_access') && localStorage.getItem('usp_refresh') && localStorage.getItem('usp_loginType')) {
+        const tokenAccess = localStorage.getItem('usp_access') as string
+        const tokenRefresh = localStorage.getItem('usp_refresh') as string
+        const loginType = localStorage.getItem('usp_loginType') as 'passport' | 'aai'
 
         // const respPostCheckToken = loginType === 'passport' ? await api.login.passport.postCheckToken({ query: { jwtToken: tokenAccess } }) : await api.login.aai.postCheckToken({ query: { jwtToken: tokenAccess } })
         //
@@ -180,9 +180,9 @@ export const useStore = defineStore('main', {
         //   this.items.tokenDecoded = jwtDecode(tokenAccess)
         //
         //   // localStorage
-        //   localStorage.setItem('aiops_access', this.items.tokenAccess)
-        //   localStorage.setItem('aiops_refresh', this.items.tokenRefresh)
-        //   localStorage.setItem('aiops_loginType', this.items.loginType)
+        //   localStorage.setItem('usp_access', this.items.tokenAccess)
+        //   localStorage.setItem('usp_refresh', this.items.tokenRefresh)
+        //   localStorage.setItem('usp_loginType', this.items.loginType)
         //
         //   // retain token
         //   this.retainToken()
@@ -199,9 +199,9 @@ export const useStore = defineStore('main', {
         this.items.tokenDecoded = jwtDecode(tokenAccess)
 
         // localStorage
-        localStorage.setItem('aiops_access', this.items.tokenAccess)
-        localStorage.setItem('aiops_refresh', this.items.tokenRefresh)
-        localStorage.setItem('aiops_loginType', this.items.loginType)
+        localStorage.setItem('usp_access', this.items.tokenAccess)
+        localStorage.setItem('usp_refresh', this.items.tokenRefresh)
+        localStorage.setItem('usp_loginType', this.items.loginType)
 
         // dispatch global token event. Listened at micro-app's boot/axios
         window.dispatchEvent(new CustomEvent('token', {
@@ -274,9 +274,9 @@ export const useStore = defineStore('main', {
                     this.items.tokenDecoded = jwtDecode(respPostRefreshToken?.data.data.accessToken as string)
 
                     // localStorage
-                    localStorage.setItem('aiops_access', this.items.tokenAccess)
-                    localStorage.setItem('aiops_refresh', this.items.tokenRefresh)
-                    localStorage.setItem('aiops_loginType', this.items.loginType)
+                    localStorage.setItem('usp_access', this.items.tokenAccess)
+                    localStorage.setItem('usp_refresh', this.items.tokenRefresh)
+                    localStorage.setItem('usp_loginType', this.items.loginType)
 
                     // dispatch global token event. Listened at micro-app's boot/axios
                     window.dispatchEvent(new CustomEvent('token', {

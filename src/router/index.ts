@@ -9,6 +9,10 @@ import routes from './routes'
 import { useStore } from 'stores/store'
 import { i18n } from 'boot/i18n'
 
+import useTitleModifier from 'src/composables/useTitleModifier'
+
+const titleModifier = useTitleModifier()
+
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -17,50 +21,6 @@ import { i18n } from 'boot/i18n'
  * async/await or return a Promise which resolves
  * with the Router instance.
  */
-
-// 二级路由（app）登记表：修改对应二级路由的title
-const titleTable = {
-  default: {
-    zh: '中国科技云',
-    en: 'CSTCloud'
-  },
-  my: {
-    zh: '',
-    en: ''
-  },
-  server: {
-    zh: '云主机-',
-    en: 'Cloud Server-'
-  },
-  storage: {
-    zh: '对象存储-',
-    en: 'Object Storage-'
-  },
-  share: {
-    zh: '分享文件-',
-    en: 'Shared Files-'
-  },
-  hpc: {
-    zh: '高性能计算-',
-    en: 'HPC-'
-  },
-  stats: {
-    zh: '用量账单-',
-    en: 'Billing-'
-  },
-  monitor: {
-    zh: '综合监控-',
-    en: 'Monitor-'
-  },
-  support: {
-    zh: '用户支持-',
-    en: 'Support-'
-  },
-  wallet: {
-    zh: '钱包-',
-    en: 'Wallet-'
-  }
-} as Record<string, Record<'zh' | 'en', string>>
 
 export default route(function (/* { store/!* , ssrContext  *!/ } */) {
   const createHistory = process.env.SERVER
@@ -89,24 +49,6 @@ export default route(function (/* { store/!* , ssrContext  *!/ } */) {
     const store = useStore()
     const { isLogin } = store.items
 
-    // 此处截获科技云登录接口跳转返回的 /clientURL?code=xxxx 部分
-    // 未登录则获取code，换取token，进行登录
-    // if (to.fullPath.includes('/login') && !isLogin) { // fullPath包括 path、 query 和 hash
-    //   // 在科技云登录成功后，跳转至/login-passport?code=xxxx或/login-aai?code=xxxx。
-    //   console.log(to.fullPath)
-    //   // 此处截取code
-    //   const code = to.fullPath.slice(to.fullPath.indexOf('=') + 1)
-    //   console.log(code)
-    //   // 此处区分是passport还是aai
-    //   if (to.fullPath.includes('passport')) {
-    //     void await store.userLogin('passport', code)
-    //   } else if (to.fullPath.includes('aai')) {
-    //     void await store.userLogin('aai', code)
-    //   }
-    //   // 跳转至内页
-    //   next({ path: '/my' })
-    // } else
-
     if (to.fullPath.startsWith('/login') && isLogin) {
       // 已经登录，访问/login，重定向到/my
       next({ path: '/my' })
@@ -126,14 +68,12 @@ export default route(function (/* { store/!* , ssrContext  *!/ } */) {
       // 之前都是登录状态有关的强制跳转。进入else后登录状态已经正常，进行页面访问权限的限制跳转
     }
 
-    // 根据当前path（取第3位）更新store.currentApp，保证main里header的app选择正确。不写在header里是因为header只setup一次，不能实时根据路径更新
+    // 根据当前path（取第3位）更新store.currentApp，保证main里header的app选择正确。
+    // 不写在header里是因为header只setup一次，不能实时根据路径更新
     store.items.currentApp = to.path.split('/')[2] || 'my'
 
     // 修改title
-    if (titleTable[store.items.currentApp]) {
-      // 能从table取到则合法, 修改对应title
-      document.title = i18n.global.locale === 'zh' ? titleTable[store.items.currentApp].zh + titleTable.default.zh : titleTable[store.items.currentApp].en + titleTable.default.en
-    }
+    titleModifier(i18n.global.locale as string, store.items.currentApp)
 
     // my 统一跳转
     if (to.fullPath === '/my') {
@@ -144,7 +84,7 @@ export default route(function (/* { store/!* , ssrContext  *!/ } */) {
         next({ path: tryPath })
       } else {
         // 没有就正常跳转
-        next({ path: '/my/server' })
+        next({ path: '/my/rca' })
       }
     }
 
