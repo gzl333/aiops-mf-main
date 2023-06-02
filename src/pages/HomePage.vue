@@ -27,11 +27,11 @@ const { tc } = i18n.global
 
     <div class="col column justify-center" style="height: calc(100vh - 100px);">
 
-      <div class="col row justify-center items-center full-height text-h2 text-weight-bold brand-text-gradient">
+      <div class="col row justify-center items-center full-height text-h2 text-weight-bold text-white">
         一体化智能运维AIOps平台
       </div>
 
-      <div class="row full-width justify-center items-center bg-grey-2" style="height: 30px;">
+      <div class="row full-width justify-center items-center text-grey" style="height: 30px;">
         <div>{{ tc('home.copyright') }}</div>
         <div>京ICP备09112257号-94</div>
       </div>
@@ -56,6 +56,8 @@ const { tc } = i18n.global
   background-color: #5997BE; /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #5997BE, #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #5997BE, #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  //background-image: linear-gradient(to right top, #051937, #004770, #007884, #00a762, #8fcc00);
 }
 
 .animation-mask {
