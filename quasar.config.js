@@ -12,7 +12,11 @@
 
 const { configure } = require('quasar/wrappers')
 const resolve = require('path').resolve
-const { name, version } = require('./package')
+const {
+  name,
+  appId,
+  version
+} = require('./package')
 const SystemJSPublicPathWebpackPlugin = require('systemjs-webpack-interop/SystemJSPublicPathWebpackPlugin')
 
 module.exports = configure(function (ctx) {
@@ -61,7 +65,7 @@ module.exports = configure(function (ctx) {
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
       vueRouterMode: 'history', // available values: 'hash', 'history'
-      distDir: 'dist/main', // @mimas: change quasar build dir, quasar will clean this folder each time building
+      distDir: 'dist/' + appId, // @mimas: change quasar build dir, quasar will clean this folder each time building
       env: {
         appVersion: version, // @mimas: application version, process.env.appVersion
         releaseTime: `${new Date()}` // @mimas: release time stamp, process.env.releaseTime
@@ -97,7 +101,7 @@ module.exports = configure(function (ctx) {
           libraryTarget: 'system',
           chunkLoadingGlobal: `webpackJsonp_${name}`, // @mimas: not sure what this is
           publicPath: `${name}`, // @mimas: publicPath needs an initial value, but will be changed on the fly by 'systemjs-webpack-interop'
-          path: resolve(__dirname, 'dist/main') // @mimas: where to put all files but index.html (which goes with the distDir setting)
+          path: resolve(__dirname, 'dist/' + appId) // @mimas: where to put all files but index.html (which goes with the distDir setting)
         }
 
         // @mimas: dependencies that will be provided by root-config
@@ -237,8 +241,8 @@ module.exports = configure(function (ctx) {
       // chainWebpackCustomSW (/* chain */) {},
 
       manifest: {
-        name: 'Micro Frontend Main',
-        short_name: 'Micro Frontend Main',
+        name: 'Micro Frontend ' + appId,
+        short_name: 'Micro Frontend ' + appId,
         description: '',
         display: 'standalone',
         orientation: 'portrait',
@@ -304,7 +308,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: '@cnic/main'
+        appId: '@cnic/' + appId
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain

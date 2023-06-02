@@ -1,5 +1,6 @@
 {
   "name": "@cnic/main",
+  "appId": "main",
   "version": "v1.0.0",
   "description": "Micro Frontend Main",
   "productName": "Micro Frontend Main",
@@ -11,7 +12,6 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.15.10",
-    "aos": "^2.3.4",
     "axios": "^0.27.2",
     "core-js": "^3.6.5",
     "jwt-decode": "^3.1.2",
@@ -21,8 +21,6 @@
     "quasar": "^2.11.5",
     "single-spa": "^5.9.3",
     "single-spa-vue": "^2.5.1",
-    "three": "^0.142.0",
-    "vanta": "^0.5.22",
     "vue": "^3.0.0",
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.0",
