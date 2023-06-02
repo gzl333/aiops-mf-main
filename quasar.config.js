@@ -15,6 +15,7 @@ const resolve = require('path').resolve
 const {
   name,
   appId,
+  defaultPort,
   version
 } = require('./package')
 const SystemJSPublicPathWebpackPlugin = require('systemjs-webpack-interop/SystemJSPublicPathWebpackPlugin')
@@ -169,7 +170,7 @@ module.exports = configure(function (ctx) {
       server: {
         type: 'http'
       },
-      port: 9010,
+      port: defaultPort,
       open: false, // opens browser window automatically
       // @mimas: allow cors for dev servers
       headers: {

@@ -28,7 +28,7 @@ const { tc } = i18n.global
     <div class="col column justify-center" style="height: calc(100vh - 100px);">
 
       <div class="col row justify-center items-center full-height text-h2 text-weight-bold brand-text-gradient">
-        AIOPS平台
+        一体化智能运维AIOps平台
       </div>
 
       <div class="row full-width justify-center items-center bg-grey-2" style="height: 30px;">

@@ -4,17 +4,18 @@ export default {
     copyright: 'Copyright © 1996-2023 Computer Network Information Center, Chinese Academy of Sciences. All Rights Reserved.'
   },
   releaseTime: 'Release Time',
-  appVersion: 'Application Version',
+  appVersion: 'App Version',
 
   首页: 'Home',
-  云主机: 'Cloud Server',
-  对象存储: 'Object Storage',
-  高性能计算: 'HPC',
-  等保云主机: 'Public Service',
-  用量账单: 'Billing',
-  综合监控: 'Monitor',
-  钱包: 'Wallet',
-  用户支持: 'Support',
+  根因定位: 'Root Cause Analysis',
+  监控: 'Monitor',
+  日志: 'Log',
+  告警: 'Alert',
+  态势: 'Trend',
+  开放数据: 'Open Data',
+  算法论文: 'Algorithm Paper',
+  工具: 'Tool',
+
   使用手册: 'User Manual',
   更多: 'More',
 

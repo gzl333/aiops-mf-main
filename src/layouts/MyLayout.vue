@@ -41,19 +41,19 @@ const releaseTime = process.env.releaseTime
 <template>
   <q-layout view="lHh Lpr lFf" style="min-height: 0 !important; min-width: 1350px !important;">
 
-    <q-header elevated class="bg-grey-2" style="min-width: 1350px;">
+    <q-header elevated class="bg-blue-grey-8" style="min-width: 1350px;">
 
       <q-toolbar style="height: 60px">
 
         <q-toolbar-title class="cursor-pointer" shrink @click="navigateToUrl('/my')">
           <div class="row items-center no-wrap">
-            <img src="../assets/cstcloud_logo.png" style="height: 40px;"/>
-            <div class="text-grey-8 text-weight-bold">{{ tc('AIOPS平台') }}</div>
+<!--            <img src="../assets/cstcloud_logo.png" style="height: 40px;"/>-->
+            <div class="text-weight-bold">{{ tc('一体化智能运维AIOps平台') }}</div>
           </div>
         </q-toolbar-title>
 
-        <q-icon name="info" color="grey-5" size="xs">
-          <q-tooltip class="bg-grey-3">
+        <q-icon name="info" color="grey-4" size="xs">
+          <q-tooltip class="bg-grey-9">
 
             <div class="text-grey text-caption text-center">{{ tc('appVersion') }}</div>
             <div class="text-grey text-caption text-center">
@@ -72,18 +72,21 @@ const releaseTime = process.env.releaseTime
 
         <div class="row full-height items-center q-pr-xs">
           <q-btn flat no-caps dense :ripple="false"
+                 text-color="white"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'rca' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/rca')">
             {{ tc('根因定位') }}
           </q-btn>
           <q-btn flat no-caps dense :ripple="false"
+                 text-color="white"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'monitor' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/monitor')">
             {{ tc('监控') }}
           </q-btn>
           <q-btn flat no-caps dense :ripple="false"
+                 text-color="white"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'log' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/log')">
@@ -91,6 +94,7 @@ const releaseTime = process.env.releaseTime
           </q-btn>
 
           <q-btn flat no-caps dense :ripple="false"
+                 text-color="white"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'alert' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/alert')">
@@ -98,6 +102,7 @@ const releaseTime = process.env.releaseTime
           </q-btn>
 
           <q-btn flat no-caps dense :ripple="false"
+                 text-color="white"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'trend' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/trend')">
@@ -115,6 +120,7 @@ const releaseTime = process.env.releaseTime
             class="full-height q-mx-xs"
             :class="currentApp === 'data' || currentApp === 'algo' || currentApp === 'tool'? 'active-btn':'inactive-btn'"
             :color="currentApp === 'data' || currentApp === 'algo' || currentApp === 'tool'? 'primary':'black'"
+            text-color="white"
             :ripple="false"
             flat
             dense
@@ -149,7 +155,7 @@ const releaseTime = process.env.releaseTime
         <div class="row items-center q-gutter-x-none">
 
           <div class="q-gutter-md row items-center no-wrap">
-            <i18n-switch :is-dark="false"/>
+            <i18n-switch :is-dark="true"/>
           </div>
 
 <!--          <q-btn class="text-weight-regular" color="grey-8" :ripple="false" flat dense no-caps no-wrap-->
@@ -157,10 +163,10 @@ const releaseTime = process.env.releaseTime
           <!--            {{ tc('使用手册') }}-->
           <!--          </q-btn>-->
 
-          <q-btn-dropdown :ripple="false" flat class="q-py-none q-px-none text-weight-regular" color="grey-8" no-caps>
+          <q-btn-dropdown :ripple="false" flat class="q-py-none q-px-none text-weight-regular" color="white" no-caps>
 
             <template v-slot:label>
-              <q-icon name="las la-user-circle"/>
+              <q-icon name="las la-user-circle" color="white" />
               {{ store.items.tokenDecoded.email }}
             </template>
 
@@ -216,8 +222,8 @@ const releaseTime = process.env.releaseTime
 }
 
 .active-btn {
-  color: $primary;
-  border-bottom: 2px solid $primary;
+  color: white;
+  border-bottom: 3px solid white;
   border-radius: 0;
 }
 

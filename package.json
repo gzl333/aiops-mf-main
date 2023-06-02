@@ -1,7 +1,8 @@
 {
+  "version": "v1.0.0",
   "name": "@cnic/main",
   "appId": "main",
-  "version": "v1.0.0",
+  "defaultPort": 9010,
   "description": "Micro Frontend Main",
   "productName": "Micro Frontend Main",
   "author": "mimas",

@@ -30,7 +30,7 @@ const store = useStore()
       <div class="row justify-between items-center no-wrap content-fixed-width">
         <div class="col-auto row items-center cursor-pointer" shrink @click="navigateToUrl('/')">
           <img src="../assets/cstcloud_logo.png" style="height: 50px;"/>
-          <div class="text-grey-3 text-h5">{{ tc('AIOPS平台') }}</div>
+          <div class="text-grey-3 text-h5">{{ tc('一体化智能运维AIOps平台') }}</div>
         </div>
 
         <div class="col-auto row">

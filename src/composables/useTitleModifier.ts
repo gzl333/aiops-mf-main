@@ -1,8 +1,8 @@
 // 二级路由（app）登记表：修改对应二级路由的title
 const titleTable = {
   default: {
-    zh: '中国科技云',
-    en: 'CSTCloud'
+    zh: '一体化智能运维',
+    en: 'AIOPs'
   },
   my: {
     zh: '',

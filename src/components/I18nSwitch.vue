@@ -79,7 +79,7 @@ watch(localeModel, value => {
   <q-select
     :dark="isDark"
     :color="isDark ? 'white' : 'primary'"
-    :popup-content-class="isDark  ? 'bg-transparent':''"
+    :popup-content-class="isDark  ? '':''"
     v-model="localeModel"
     :options="localeOptions"
     dense
