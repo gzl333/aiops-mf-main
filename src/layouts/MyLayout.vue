@@ -41,13 +41,13 @@ const releaseTime = process.env.releaseTime
 <template>
   <q-layout view="lHh Lpr lFf" style="min-height: 0 !important; min-width: 1350px !important;">
 
-    <q-header elevated class="bg-blue-grey-8" style="min-width: 1350px;">
+    <q-header elevated class="" style="min-width: 1350px; background-color: rgb(3,58,88);">
 
       <q-toolbar style="height: 60px">
 
         <q-toolbar-title class="cursor-pointer" shrink @click="navigateToUrl('/my')">
           <div class="row items-center no-wrap">
-<!--            <img src="../assets/cstcloud_logo.png" style="height: 40px;"/>-->
+            <!--            <img src="../assets/cstcloud_logo.png" style="height: 40px;"/>-->
             <div class="text-weight-bold">{{ tc('一体化智能运维AIOps平台') }}</div>
           </div>
         </q-toolbar-title>
@@ -158,7 +158,7 @@ const releaseTime = process.env.releaseTime
             <i18n-switch :is-dark="true"/>
           </div>
 
-<!--          <q-btn class="text-weight-regular" color="grey-8" :ripple="false" flat dense no-caps no-wrap-->
+          <!--          <q-btn class="text-weight-regular" color="grey-8" :ripple="false" flat dense no-caps no-wrap-->
           <!--                 icon="mdi-book-open-outline" @click="gotoManual">-->
           <!--            {{ tc('使用手册') }}-->
           <!--          </q-btn>-->
@@ -166,7 +166,7 @@ const releaseTime = process.env.releaseTime
           <q-btn-dropdown :ripple="false" flat class="q-py-none q-px-none text-weight-regular" color="white" no-caps>
 
             <template v-slot:label>
-              <q-icon name="las la-user-circle" color="white" />
+              <q-icon name="las la-user-circle" color="white"/>
               {{ store.items.tokenDecoded.email }}
             </template>
 

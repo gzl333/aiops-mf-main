@@ -22,6 +22,8 @@
     "quasar": "^2.11.5",
     "single-spa": "^5.9.3",
     "single-spa-vue": "^2.5.1",
+    "three": "^0.153.0",
+    "vanta": "^0.5.24",
     "vue": "^3.0.0",
     "vue-i18n": "^9.0.0",
     "vue-router": "^4.0.0",

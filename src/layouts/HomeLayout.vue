@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref/* , computed */ } from 'vue'
+// import { ref/* , computed */ } from 'vue'
 // import { useStore } from 'stores/store'
 // import { i18n } from 'boot/i18n'
 // import { navigateToUrl } from 'single-spa'
@@ -19,10 +19,10 @@ import { ref/* , computed */ } from 'vue'
 // const store = useStore()
 
 // scroll info
-const scrollTop = ref(0)
-const onScroll = (info: Record<string, Record<string, number>>) => {
-  scrollTop.value = info.position.top
-}
+// const scrollTop = ref(0)
+// const onScroll = (info: Record<string, Record<string, number>>) => {
+//   scrollTop.value = info.position.top
+// }
 // const scrollRatio = computed(() => scrollTop.value > 400 ? 0.4 : scrollTop.value / 400 * 0.4)
 // const dynamicBackground = computed(() => {
 //   return {
@@ -36,16 +36,16 @@ const onScroll = (info: Record<string, Record<string, number>>) => {
 
     <!--    <q-header :elevated="scrollRatio===0.4" class="home-header row justify-center" :style="dynamicBackground">-->
 
-<!--    <Transition>-->
-<!--      <q-header v-if="scrollTop >= 100" reveal class="home-header" style="background: #0E3754;">-->
-<!--        <HeaderContent/>-->
-<!--      </q-header>-->
-<!--    </Transition>-->
+    <!--    <Transition>-->
+    <!--      <q-header v-if="scrollTop >= 100" reveal class="home-header" style="background: #0E3754;">-->
+    <!--        <HeaderContent/>-->
+    <!--      </q-header>-->
+    <!--    </Transition>-->
 
     <q-page-container style="padding-top: 0 !important;">
       <q-page class="non-selectable">
         <q-scroll-area class="home-scroll-area">
-          <q-scroll-observer @scroll="onScroll"/>
+          <!--          <q-scroll-observer @scroll="onScroll"/>-->
           <router-view :key="$route.fullPath"/>
         </q-scroll-area>
       </q-page>

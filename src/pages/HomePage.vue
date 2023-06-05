@@ -1,8 +1,11 @@
 <script setup lang="ts">
-// import { ref, watch, /* computed, */ onMounted, onUnmounted } from 'vue'
+import { ref, watch, /* computed, */ onMounted, onUnmounted } from 'vue'
 // import { useStore } from 'stores/store'
 import { i18n } from 'boot/i18n'
 // import { navigateToUrl } from 'single-spa'
+
+import * as THREE from 'three'
+import VANTA from 'vanta/src/vanta.waves'
 
 import HeaderContent from 'components/HeaderContent.vue'
 
@@ -18,26 +21,125 @@ import HeaderContent from 'components/HeaderContent.vue'
 const { tc } = i18n.global
 // const store = useStore()
 
+const videoDom = ref() // 容纳动画的dom对象
+const animation = ref() // 动画对象
+
+const startAnimation = () => {
+  animation.value = VANTA({
+    el: videoDom.value,
+    THREE,
+    // 如果需要改变样式，要写在这里
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: 0x22e47,
+    shininess: 100.00,
+    waveHeight: 21.00,
+    zoom: 1.05
+  })
+}
+const stopAnimation = () => {
+  animation.value.destroy()
+}
+
+// 单一开关控制动画
+const isAnimationPlaying = ref(true)
+watch(isAnimationPlaying, () => {
+  if (isAnimationPlaying.value) {
+    // mount the animation
+    startAnimation()
+  } else {
+    stopAnimation()
+  }
+})
+
+/* FPS测量 */
+const avgFps = ref(60) // 认为初始帧率为满值
+const countFps = () => {
+  let fps = 0
+  let before = Date.now()
+  let now = Date.now()
+  requestAnimationFrame(
+    function loop () {
+      now = Date.now()
+      fps = Math.round(1000 / (now - before))
+      before = now
+      requestAnimationFrame(loop)
+    }
+  )
+  setInterval(() => {
+    avgFps.value = (avgFps.value + fps) / 2
+  }, 1000)
+}
+/* FPS测量 */
+
+/* 过低FPS保护, 过低帧率则停止动画 */
+const guardFps = () => {
+  const MIN_FPS = 18 // 最低帧率
+  const timer = setInterval(() => {
+    if (avgFps.value < MIN_FPS) {
+      isAnimationPlaying.value = false
+      clearInterval(timer)
+    }
+  }, 100)
+}
+/* 过低FPS侦测 */
+
+onMounted(() => {
+  // aos init
+  // AOS.init()
+  // start animation
+  startAnimation()
+  // start FPS counting
+  countFps()
+  // monitor FPS
+  guardFps()
+})
+
+onUnmounted(() => {
+  stopAnimation()
+})
+
 </script>
 
 <template>
   <div class="HomePage gradient-background">
 
-    <HeaderContent/>
+    <div ref="videoDom"
+         class="col column justify-center"
+         style="height: 100vh">
 
-    <div class="col column justify-center" style="height: calc(100vh - 100px);">
+      <HeaderContent/>
+
+      <q-page-sticky position="top-right" :offset="[5, 5]">
+        <div class="row items-center">
+          <div class="text-grey-7">FPS {{ avgFps.toFixed(2) }}</div>
+          <q-toggle
+            v-model="isAnimationPlaying"
+            dense
+            dark
+            keep-color
+            color="blue-grey-9"
+          />
+        </div>
+        <!--        <div class="text-white cursor-pointer" @click="isAnimationPlaying = true">开启动画</div>-->
+        <!--        <div class="text-white cursor-pointer" @click="isAnimationPlaying = false">关闭动画</div>-->
+      </q-page-sticky>
 
       <div class="col row justify-center items-center full-height text-h2 text-weight-bold text-white">
         一体化智能运维AIOps平台
       </div>
 
-      <div class="row full-width justify-center items-center text-grey" style="height: 30px;">
+      <div class="row justify-center items-center text-grey">
         <div>{{ tc('home.copyright') }}</div>
         <div>京ICP备09112257号-94</div>
       </div>
 
     </div>
-
   </div>
 
 </template>
@@ -60,7 +162,7 @@ const { tc } = i18n.global
   //background-image: linear-gradient(to right top, #051937, #004770, #007884, #00a762, #8fcc00);
 }
 
-.animation-mask {
-  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), color-stop(0.8, rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
-}
+//.animation-mask {
+//  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), color-stop(0.8, rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+//}
 </style>
