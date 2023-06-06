@@ -5,7 +5,7 @@ import { i18n } from 'boot/i18n'
 // import { navigateToUrl } from 'single-spa'
 
 import * as THREE from 'three'
-import VANTA from 'vanta/src/vanta.waves'
+import VANTA from 'vanta/dist/vanta.net.min'
 
 import HeaderContent from 'components/HeaderContent.vue'
 
@@ -20,6 +20,10 @@ import HeaderContent from 'components/HeaderContent.vue'
 
 const { tc } = i18n.global
 // const store = useStore()
+
+// testss
+// window.THREE = THREE
+// const VANTA = await import('vanta/dist/vanta.halo.min')
 
 const videoDom = ref() // 容纳动画的dom对象
 const animation = ref() // 动画对象
@@ -36,10 +40,10 @@ const startAnimation = () => {
     minWidth: 200.00,
     scale: 1.00,
     scaleMobile: 1.00,
-    color: 0x22e47,
-    shininess: 100.00,
-    waveHeight: 21.00,
-    zoom: 1.05
+    color: 0xb4f83,
+    backgroundColor: 0x151a3c,
+    points: 15.00,
+    maxDistance: 25.00
   })
 }
 const stopAnimation = () => {
@@ -90,8 +94,6 @@ const guardFps = () => {
 /* 过低FPS侦测 */
 
 onMounted(() => {
-  // aos init
-  // AOS.init()
   // start animation
   startAnimation()
   // start FPS counting
@@ -117,26 +119,26 @@ onUnmounted(() => {
 
       <q-page-sticky position="top-right" :offset="[5, 5]">
         <div class="row items-center">
-          <div class="text-grey-7">FPS {{ avgFps.toFixed(2) }}</div>
+          <div class="text-grey-5">FPS {{ avgFps.toFixed(2) }}</div>
           <q-toggle
             v-model="isAnimationPlaying"
             dense
             dark
             keep-color
-            color="blue-grey-9"
+            color="blue-grey"
           />
         </div>
         <!--        <div class="text-white cursor-pointer" @click="isAnimationPlaying = true">开启动画</div>-->
         <!--        <div class="text-white cursor-pointer" @click="isAnimationPlaying = false">关闭动画</div>-->
       </q-page-sticky>
 
-      <div class="col row justify-center items-center full-height text-h2 text-weight-bold text-white">
+      <div class="col row justify-center items-center full-height text-h2 text-weight-bold text-white ">
         一体化智能运维AIOps平台
       </div>
 
-      <div class="row justify-center items-center text-grey">
-        <div>{{ tc('home.copyright') }}</div>
-        <div>京ICP备09112257号-94</div>
+      <div class="column justify-center items-center text-grey">
+        <div class="col">{{ tc('home.copyright') }}</div>
+        <div class="col">京ICP备09112257号-94</div>
       </div>
 
     </div>
