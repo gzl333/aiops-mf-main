@@ -21,10 +21,6 @@ import HeaderContent from 'components/HeaderContent.vue'
 const { tc } = i18n.global
 // const store = useStore()
 
-// testss
-// window.THREE = THREE
-// const VANTA = await import('vanta/dist/vanta.halo.min')
-
 const videoDom = ref() // 容纳动画的dom对象
 const animation = ref() // 动画对象
 
@@ -40,10 +36,10 @@ const startAnimation = () => {
     minWidth: 200.00,
     scale: 1.00,
     scaleMobile: 1.00,
-    color: 0xb4f83,
-    backgroundColor: 0x151a3c,
-    points: 15.00,
-    maxDistance: 25.00
+    points: 10.00,
+    maxDistance: 20.00,
+    color: 0xbdff,
+    backgroundColor: 0x31c
   })
 }
 const stopAnimation = () => {
@@ -132,8 +128,23 @@ onUnmounted(() => {
         <!--        <div class="text-white cursor-pointer" @click="isAnimationPlaying = false">关闭动画</div>-->
       </q-page-sticky>
 
-      <div class="col row justify-center items-center full-height text-h2 text-weight-bold text-white ">
-        一体化智能运维AIOps平台
+      <div class="col column justify-center items-center full-height ">
+
+        <div class="col-auto row items-center justify-center full-width"
+             style="height: 300px; background-color: rgb(255, 255, 255, 0.1); backdrop-filter: blur(3px);">
+
+          <div class="col-6">
+
+            <div class="row justify-center text-h2 text-weight-medium text-white">
+              AI 3.0 主动运维新范式
+            </div>
+            <div class="row justify-center text-h5 text-grey-5 q-pt-lg">
+              有趣、有用和有预见的智能运维
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
       <div class="column justify-center items-center text-grey">
@@ -157,9 +168,13 @@ onUnmounted(() => {
 }
 
 .gradient-background {
-  background-color: #5997BE; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, #5997BE, #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, #5997BE, #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color: #2c3e50; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #2c3e50, #2980b9); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #2c3e50, #2980b9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  //background-color: #5997BE; /* fallback for old browsers */
+  //background: -webkit-linear-gradient(to bottom, #5997BE, #FFFFFF); /* Chrome 10-25, Safari 5.1-6 */
+  //background: linear-gradient(to bottom, #5997BE, #FFFFFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   //background-image: linear-gradient(to right top, #051937, #004770, #007884, #00a762, #8fcc00);
 }

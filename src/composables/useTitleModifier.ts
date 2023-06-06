@@ -2,7 +2,7 @@
 const titleTable = {
   default: {
     zh: '一体化智能运维',
-    en: 'AIOPs'
+    en: 'AIOps'
   },
   my: {
     zh: '',

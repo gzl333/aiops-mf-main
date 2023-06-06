@@ -47,12 +47,12 @@ const releaseTime = process.env.releaseTime
 
         <q-toolbar-title class="cursor-pointer" shrink @click="navigateToUrl('/my')">
           <div class="row items-center no-wrap">
-            <!--            <img src="../assets/cstcloud_logo.png" style="height: 40px;"/>-->
-            <div class="text-weight-bold">{{ tc('一体化智能运维AIOps平台') }}</div>
+            <img src="../assets/cstcloud_logo.png" alt="" style="height: 40px;"/>
+            <div class="text-weight-bold text-blue-grey-2">{{ tc('一体化智能运维AIOps平台') }}</div>
           </div>
         </q-toolbar-title>
 
-        <q-icon name="info" color="grey-4" size="xs">
+        <q-icon name="info" color="grey-9" size="xs">
           <q-tooltip class="bg-grey-9">
 
             <div class="text-grey text-caption text-center">{{ tc('appVersion') }}</div>
@@ -72,21 +72,21 @@ const releaseTime = process.env.releaseTime
 
         <div class="row full-height items-center q-pr-xs">
           <q-btn flat no-caps dense :ripple="false"
-                 text-color="white"
+                 text-color="blue-grey-2"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'rca' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/rca')">
             {{ tc('根因定位') }}
           </q-btn>
           <q-btn flat no-caps dense :ripple="false"
-                 text-color="white"
+                 text-color="blue-grey-2"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'monitor' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/monitor')">
             {{ tc('监控') }}
           </q-btn>
           <q-btn flat no-caps dense :ripple="false"
-                 text-color="white"
+                 text-color="blue-grey-2"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'log' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/log')">
@@ -94,7 +94,7 @@ const releaseTime = process.env.releaseTime
           </q-btn>
 
           <q-btn flat no-caps dense :ripple="false"
-                 text-color="white"
+                 text-color="blue-grey-2"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'alert' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/alert')">
@@ -102,7 +102,7 @@ const releaseTime = process.env.releaseTime
           </q-btn>
 
           <q-btn flat no-caps dense :ripple="false"
-                 text-color="white"
+                 text-color="blue-grey-2"
                  class="full-height q-mx-xs"
                  :class="currentApp === 'trend' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/trend')">
@@ -120,7 +120,7 @@ const releaseTime = process.env.releaseTime
             class="full-height q-mx-xs"
             :class="currentApp === 'data' || currentApp === 'algo' || currentApp === 'tool'? 'active-btn':'inactive-btn'"
             :color="currentApp === 'data' || currentApp === 'algo' || currentApp === 'tool'? 'primary':'black'"
-            text-color="white"
+            text-color="blue-grey-2"
             :ripple="false"
             flat
             dense
@@ -222,7 +222,8 @@ const releaseTime = process.env.releaseTime
 }
 
 .active-btn {
-  color: white;
+  background-color: rgb(255, 255, 255, 0.1);
+  color: white !important;
   border-bottom: 3px solid white;
   border-radius: 0;
 }

@@ -179,6 +179,14 @@ module.exports = configure(function (ctx) {
         'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
       }
     },
+    // client: {
+    //   webSocketURL: {
+    //     hostname: 'localhost',
+    //     pathname: '/ws',
+    //     port: defaultPort,
+    //     protocol: 'http'
+    //   }
+    // },
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
     framework: {
