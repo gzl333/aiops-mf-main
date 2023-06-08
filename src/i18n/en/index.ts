@@ -3,7 +3,7 @@ export default {
   home: {
     copyright: 'Copyright © 1996-2023 Computer Network Information Center, Chinese Academy of Sciences. All Rights Reserved.'
   },
-  releaseTime: 'Release Time',
+  releaseTime: 'Compile Time',
   appVersion: 'App Version',
 
   首页: 'Home',

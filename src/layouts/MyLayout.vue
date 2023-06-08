@@ -48,12 +48,12 @@ const releaseTime = process.env.releaseTime
         <q-toolbar-title class="cursor-pointer" shrink @click="navigateToUrl('/my')">
           <div class="row items-center no-wrap">
             <img src="../assets/cstcloud_logo.png" alt="" style="height: 40px;"/>
-            <div class="text-weight-bold text-blue-grey-2">{{ tc('一体化智能运维AIOps平台') }}</div>
+            <div class="text-weight-bold text-blue-grey-1">{{ tc('一体化智能运维AIOps平台') }}</div>
           </div>
         </q-toolbar-title>
 
-        <q-icon name="info" color="grey-9" size="xs">
-          <q-tooltip class="bg-grey-9">
+        <q-icon name="info" color="grey-8" size="xs">
+          <q-tooltip class="bg-grey-3">
 
             <div class="text-grey text-caption text-center">{{ tc('appVersion') }}</div>
             <div class="text-grey text-caption text-center">
@@ -71,6 +71,7 @@ const releaseTime = process.env.releaseTime
         <q-space/>
 
         <div class="row full-height items-center q-pr-xs">
+
           <q-btn flat no-caps dense :ripple="false"
                  text-color="blue-grey-2"
                  class="full-height q-mx-xs"
@@ -78,6 +79,15 @@ const releaseTime = process.env.releaseTime
                  @click="navigateToUrl('/my/rca')">
             {{ tc('根因定位') }}
           </q-btn>
+
+          <q-btn flat no-caps dense :ripple="false"
+                 text-color="blue-grey-2"
+                 class="full-height q-mx-xs"
+                 :class="currentApp === 'trend' ? 'active-btn':'inactive-btn'"
+                 @click="navigateToUrl('/my/trend')">
+            {{ tc('态势') }}
+          </q-btn>
+
           <q-btn flat no-caps dense :ripple="false"
                  text-color="blue-grey-2"
                  class="full-height q-mx-xs"
@@ -85,6 +95,7 @@ const releaseTime = process.env.releaseTime
                  @click="navigateToUrl('/my/monitor')">
             {{ tc('监控') }}
           </q-btn>
+
           <q-btn flat no-caps dense :ripple="false"
                  text-color="blue-grey-2"
                  class="full-height q-mx-xs"
@@ -100,21 +111,6 @@ const releaseTime = process.env.releaseTime
                  @click="navigateToUrl('/my/alert')">
             {{ tc('告警') }}
           </q-btn>
-
-          <q-btn flat no-caps dense :ripple="false"
-                 text-color="blue-grey-2"
-                 class="full-height q-mx-xs"
-                 :class="currentApp === 'trend' ? 'active-btn':'inactive-btn'"
-                 @click="navigateToUrl('/my/trend')">
-            {{ tc('态势') }}
-          </q-btn>
-
-          <!--          <q-btn flat no-caps dense :ripple="false"-->
-          <!--                 class="full-height q-mx-xs"-->
-          <!--                 :class="currentApp === 'data' ? 'active-btn':'inactive-btn'"-->
-          <!--                 @click="navigateToUrl('/my/data')">-->
-          <!--            {{ tc('开放数据') }}-->
-          <!--          </q-btn>-->
 
           <q-btn-dropdown
             class="full-height q-mx-xs"
