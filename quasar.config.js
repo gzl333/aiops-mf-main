@@ -18,7 +18,10 @@ const {
   defaultPort,
   version
 } = require('./package')
+
 const SystemJSPublicPathWebpackPlugin = require('systemjs-webpack-interop/SystemJSPublicPathWebpackPlugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ExposeRuntimeCssAssetsPlugin = require('single-spa-css/ExposeRuntimeCssAssetsPlugin.cjs')
 
 module.exports = configure(function (ctx) {
   return {
@@ -38,26 +41,17 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: [
-      'i18n',
-      'axios',
-      'reload'
-    ],
+    boot: ['i18n', 'axios', 'reload'],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
-    css: [
-      'app.scss'
-    ],
+    css: ['app.scss'],
 
     // https://github.com/quasarframework/quasar/tree/dev/extras
-    extras: [
-      // 'ionicons-v4',
-      'mdi-v5',
-      // 'fontawesome-v6',
+    extras: [// 'ionicons-v4',
+      'mdi-v5', // 'fontawesome-v6',
       // 'eva-icons',
       // 'themify',
-      'line-awesome',
-      // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
+      'line-awesome', // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font', // optional, you are not bound to it
       'material-icons' // optional, you are not bound to it
@@ -70,8 +64,7 @@ module.exports = configure(function (ctx) {
       env: {
         appVersion: version, // @mimas: application version, process.env.appVersion
         releaseTime: `${new Date()}` // @mimas: release time stamp, process.env.releaseTime
-      },
-      // transpile: false,
+      }, // transpile: false,
       // publicPath: '/',
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -124,7 +117,10 @@ module.exports = configure(function (ctx) {
         cfg.optimization.splitChunks = false // potentially problematic
         cfg.devtool = 'source-map' // for debugging
         cfg.plugins.push(
-          new SystemJSPublicPathWebpackPlugin({ systemjsModuleName: name })
+          new SystemJSPublicPathWebpackPlugin({ systemjsModuleName: name }),
+          new MiniCssExtractPlugin({ filename: '[name].css' }),
+          // The filename here must match the filename for the MiniCssExtractPlugin
+          new ExposeRuntimeCssAssetsPlugin({ filename: '[name].css' })
         )
 
         // @mimas: real meat for single-spa!
@@ -142,14 +138,6 @@ module.exports = configure(function (ctx) {
               if (resourcePath.endsWith('client-entry.js')) {
                 return resolve(__dirname, '.singleSpa', 'singleSpa-client-entry.js')
               }
-
-              // @mimas: originals for debugging
-              // if (resourcePath.endsWith('app.js')) {
-              //   return resolve('.singleSpa', 'original-app.js')
-              // }
-              // if (resourcePath.endsWith('client-entry.js')) {
-              //   return resolve('.singleSpa', 'original-client-entry.js')
-              // }
             },
             async: true
           }
@@ -177,8 +165,7 @@ module.exports = configure(function (ctx) {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
         'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
-      },
-      // @mimas: allow hot reload
+      }, // @mimas: allow hot reload
       client: {
         webSocketURL: {
           hostname: 'localhost',
@@ -187,8 +174,7 @@ module.exports = configure(function (ctx) {
           protocol: 'http'
         }
       }
-    },
-    // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
+    }, // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-framework
     framework: {
       config: {},
 
@@ -206,17 +192,12 @@ module.exports = configure(function (ctx) {
       lang: 'zh-CN', // en-US'
 
       // Quasar plugins
-      plugins: [
-        'Loading',
-        'Notify',
-        'Dialog'
-      ]
+      plugins: ['Loading', 'Notify', 'Dialog']
     },
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: [
-      // 'all'
+    animations: [// 'all'
     ],
 
     // https://v2.quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
@@ -229,14 +210,11 @@ module.exports = configure(function (ctx) {
       prodPort: 3000, // The default port that the production server should use
       // (gets superseded if process.env.PORT is specified at runtime)
 
-      maxAge: 1000 * 60 * 60 * 24 * 30,
-      // Tell browser when a file from the server should expire from cache (in ms)
+      maxAge: 1000 * 60 * 60 * 24 * 30, // Tell browser when a file from the server should expire from cache (in ms)
 
       // chainWebpackWebserver (/* chain */) {},
 
-      middlewares: [
-        ctx.prod ? 'compression' : '',
-        'render' // keep this as last one
+      middlewares: [ctx.prod ? 'compression' : '', 'render' // keep this as last one
       ]
     },
 
@@ -257,33 +235,27 @@ module.exports = configure(function (ctx) {
         orientation: 'portrait',
         background_color: '#ffffff',
         theme_color: '#027be3',
-        icons: [
-          {
-            src: 'icons/icon-128x128.png',
-            sizes: '128x128',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/icon-192x192.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/icon-256x256.png',
-            sizes: '256x256',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/icon-384x384.png',
-            sizes: '384x384',
-            type: 'image/png'
-          },
-          {
-            src: 'icons/icon-512x512.png',
-            sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
+        icons: [{
+          src: 'icons/icon-128x128.png',
+          sizes: '128x128',
+          type: 'image/png'
+        }, {
+          src: 'icons/icon-192x192.png',
+          sizes: '192x192',
+          type: 'image/png'
+        }, {
+          src: 'icons/icon-256x256.png',
+          sizes: '256x256',
+          type: 'image/png'
+        }, {
+          src: 'icons/icon-384x384.png',
+          sizes: '384x384',
+          type: 'image/png'
+        }, {
+          src: 'icons/icon-512x512.png',
+          sizes: '512x512',
+          type: 'image/png'
+        }]
       }
     },
 
