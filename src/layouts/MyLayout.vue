@@ -112,6 +112,14 @@ const releaseTime = process.env.releaseTime
             {{ tc('告警') }}
           </q-btn>
 
+          <q-btn flat no-caps dense :ripple="false"
+                 text-color="blue-grey-2"
+                 class="full-height q-mx-xs"
+                 :class="currentApp === 'netflow' ? 'active-btn':'inactive-btn'"
+                 @click="navigateToUrl('/my/netflow')">
+            {{ tc('网络流') }}
+          </q-btn>
+
           <q-btn-dropdown
             class="full-height q-mx-xs"
             :class="currentApp === 'data' || currentApp === 'algo' || currentApp === 'tool'? 'active-btn':'inactive-btn'"
