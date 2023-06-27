@@ -39,6 +39,10 @@ const titleTable = {
   tool: {
     zh: '工具-',
     en: 'Tool-'
+  },
+  netflow: {
+    zh: '网络流-',
+    en: 'Netflow-'
   }
 } as Record<string, Record<'zh' | 'en', string>>
 

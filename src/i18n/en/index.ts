@@ -15,6 +15,7 @@ export default {
   开放数据: 'Open Data',
   算法论文: 'Algorithm Paper',
   工具: 'Tool',
+  网络流: 'Netflow',
 
   使用手册: 'User Manual',
   更多: 'More',
