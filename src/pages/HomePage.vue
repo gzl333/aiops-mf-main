@@ -39,7 +39,7 @@ const startAnimation = () => {
     points: 10.00,
     maxDistance: 20.00,
     color: 0xbdff,
-    backgroundColor: 0x31c
+    backgroundColor: 0x050505 /* 0x31c */
   })
 }
 const stopAnimation = () => {
@@ -133,12 +133,12 @@ onUnmounted(() => {
         <div class="col-auto row items-center justify-center full-width"
              style="height: 300px; background-color: rgb(255, 255, 255, 0.1); backdrop-filter: blur(3px);">
 
-          <div class="col-6">
+          <div class="col-8">
 
-            <div class="row justify-center text-h2 text-weight-medium text-white">
+            <div class="row justify-center text-h2 text-weight-bold text-white brand-text-gradient">
               AI 3.0 主动运维新范式
             </div>
-            <div class="row justify-center text-h5 text-grey-5 q-pt-lg">
+            <div class="row justify-center text-h5 text-grey-3 q-pt-lg">
               有趣、有用和有预见的智能运维
             </div>
 
@@ -162,7 +162,8 @@ onUnmounted(() => {
 }
 
 .brand-text-gradient {
-  background: -webkit-linear-gradient(45deg, rgba(0, 43, 84, 1) 0%, rgba(0, 112, 218, 1) 90%);
+  //background: -webkit-linear-gradient(45deg, rgba(0, 43, 84, 1) 0%, rgba(0, 112, 218, 1) 90%);
+  background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
