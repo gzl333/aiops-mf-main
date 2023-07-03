@@ -107,6 +107,14 @@ const releaseTime = process.env.releaseTime
           <q-btn flat no-caps dense :ripple="false"
                  text-color="blue-grey-2"
                  class="full-height q-mx-xs"
+                 :class="currentApp === 'netflow' ? 'active-btn':'inactive-btn'"
+                 @click="navigateToUrl('/my/netflow')">
+            {{ tc('网络流') }}
+          </q-btn>
+
+          <q-btn flat no-caps dense :ripple="false"
+                 text-color="blue-grey-2"
+                 class="full-height q-mx-xs"
                  :class="currentApp === 'alert' ? 'active-btn':'inactive-btn'"
                  @click="navigateToUrl('/my/alert')">
             {{ tc('告警') }}
@@ -115,15 +123,15 @@ const releaseTime = process.env.releaseTime
           <q-btn flat no-caps dense :ripple="false"
                  text-color="blue-grey-2"
                  class="full-height q-mx-xs"
-                 :class="currentApp === 'netflow' ? 'active-btn':'inactive-btn'"
-                 @click="navigateToUrl('/my/netflow')">
-            {{ tc('网络流') }}
+                 :class="currentApp === 'algo' ? 'active-btn':'inactive-btn'"
+                 @click="navigateToUrl('/my/algo')">
+            {{ tc('算法') }}
           </q-btn>
 
           <q-btn-dropdown
             class="full-height q-mx-xs"
-            :class="currentApp === 'data' || currentApp === 'algo' || currentApp === 'tool'? 'active-btn':'inactive-btn'"
-            :color="currentApp === 'data' || currentApp === 'algo' || currentApp === 'tool'? 'primary':'black'"
+            :class="currentApp === 'tool'? 'active-btn':'inactive-btn'"
+            :color="currentApp === 'tool'? 'primary':'black'"
             text-color="blue-grey-2"
             :ripple="false"
             flat
@@ -133,17 +141,11 @@ const releaseTime = process.env.releaseTime
           >
             <q-list>
 
-              <q-item clickable v-close-popup @click="navigateToUrl('/my/data')">
-                <q-item-section>
-                  <q-item-label :class="currentApp === 'data' ? 'text-primary':''">{{ tc('开放数据') }}</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable v-close-popup @click="navigateToUrl('/my/algo')">
-                <q-item-section>
-                  <q-item-label :class="currentApp === 'algo' ? 'text-primary':''">{{ tc('算法论文') }}</q-item-label>
-                </q-item-section>
-              </q-item>
+              <!--              <q-item clickable v-close-popup @click="navigateToUrl('/my/data')">-->
+              <!--                <q-item-section>-->
+              <!--                  <q-item-label :class="currentApp === 'data' ? 'text-primary':''">{{ tc('开放数据') }}</q-item-label>-->
+              <!--                </q-item-section>-->
+              <!--              </q-item>-->
 
               <q-item clickable v-close-popup @click="navigateToUrl('/my/tool')">
                 <q-item-section>

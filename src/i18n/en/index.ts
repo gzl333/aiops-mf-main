@@ -13,7 +13,7 @@ export default {
   告警: 'Alert',
   态势: 'Trend',
   开放数据: 'Open Data',
-  算法论文: 'Algorithm Paper',
+  算法: 'Algorithm',
   工具: 'Tool',
   网络流: 'Netflow',
 
