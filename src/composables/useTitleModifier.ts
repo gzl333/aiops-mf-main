@@ -28,13 +28,13 @@ const titleTable = {
     zh: '态势-',
     en: 'Trend-'
   },
+  algo: {
+    zh: '算法-',
+    en: 'Algorithm-'
+  },
   data: {
     zh: '开放数据-',
     en: 'Open Data-'
-  },
-  algo: {
-    zh: '算法论文-',
-    en: 'Algorithm Paper-'
   },
   tool: {
     zh: '工具-',
